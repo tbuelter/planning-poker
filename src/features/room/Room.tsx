@@ -14,6 +14,7 @@ import Story from '../../ui-components/story/story';
 import UserSelection from '../../ui-components/user-selection/user-selection';
 import UserStoryList from '../../ui-components/user-story-list/user-story-list';
 import Voting from '../../ui-components/voting/voting';
+import { off } from 'process';
 
 const Room: React.FC = () => {
   const { roomId } = useParams<{ roomId: string }>();
@@ -30,6 +31,7 @@ const Room: React.FC = () => {
   if (!roomId) {
     throw Error(); // TODO: redirect to create room
   }  
+  
   
   // Load User from Localstorage
   useEffect(() => {    
@@ -101,8 +103,29 @@ const Room: React.FC = () => {
     }
   }, [roomId, room, dispatch]);
 
+  
+  const calculateAverageVote = () => {
+    if(room && room.users){
+      if (room.currentUserStoryId) {
+        const story = room.userStories.find(story => story.id === room.currentUserStoryId);
+        if (story) {
+          // Collect votes from active users
+          const votes = room.users
+            .filter(user => user.currentVote !== undefined)
+            .map(user => user.currentVote as number); 
+
+          if (votes.length > 0) {
+            const sum = votes.reduce((acc, vote) => acc + vote, 0);
+            return sum / votes.length;
+          }
+        }
+      }
+    }
+    return 0;
+  };
+
   useEffect(() => {
-    setAverageVote(calculateAverageVote())
+      setAverageVote(calculateAverageVote())
   }, [room?.users]);
 
 
@@ -172,7 +195,6 @@ const Room: React.FC = () => {
       userStories: updatedUserStories,
       users: updatedUsers,
     }));
-    
   };
   
 
@@ -204,24 +226,6 @@ const Room: React.FC = () => {
   const findCurrentUserStory = () => {
       return room.userStories.find(story => story.id === room.currentUserStoryId)
   }
-
-  const calculateAverageVote = () => {
-    if (room.currentUserStoryId) {
-      const story = room.userStories.find(story => story.id === room.currentUserStoryId);
-      if (story) {
-        // Collect votes from active users
-        const votes = room.users
-          .filter(user => user.currentVote !== undefined)
-          .map(user => user.currentVote as number); 
-
-        if (votes.length > 0) {
-          const sum = votes.reduce((acc, vote) => acc + vote, 0);
-          return sum / votes.length;
-        }
-      }
-    }
-    return 0;
-  };
   
   return (
     <Box>
