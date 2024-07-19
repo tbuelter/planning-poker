@@ -1,46 +1,86 @@
-# Getting Started with Create React App
+# Real-Time Collaborative Voting App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Real-Time Collaborative Voting App! This project is designed as a learning tool for working with React, Firebase, and Redux. It allows users to join rooms, participate in voting on various user stories, and track their presence in real-time.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the App](#running-the-app)
+- [Usage](#usage)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Rooms**: Create and join rooms for collaborative voting sessions.
+- **Users**: Each user has a unique ID, name, role, and vote.
+- **User Stories**: Add and vote on user stories within a room.
+- **Real-time Updates**: Sync room data and user states in real-time using Firebase Firestore.
+- **Presence Tracking**: Track which users are currently in the room.
+- **User Management**: Add or remove users from rooms and manage their voting status.
+- **Kick User**: Spectators can remove users from the room, and the kicked users are redirected to a different page.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+- **React**: Frontend library for building user interfaces.
+- **Redux**: State management library.
+- **Firebase**: Backend platform for real-time data syncing and user authentication.
+- **Material-UI**: React components for faster and easier web development.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Node.js and yarn installed on your machine.
+- A Firebase project set up with Firestore Database and Firestore Realtime Database.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/tbuelter/planning-poker
+    cd planning-poker
+    ```
 
-### `npm run eject`
+2. Install dependencies:
+    ```sh
+    yarn install
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Set up Firebase configuration:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    Create a `firebaseConfig.js` file in the `src` directory with your Firebase project credentials:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    ```javascript
+    // src/firebaseConfig.js
+    export const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Running the App
 
-## Learn More
+1. Start the development server:
+    ```sh
+    yarn start
+    ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Open your browser and navigate to `http://localhost:3000/room/create`.
+3. Save the URL of the created Room to be able to return to it.
+   
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Usage
+
+1. **Create or Join a Room**: On the main page, you can create a new room or join an existing one by entering a room ID.
+2. **Select a User**: Choose your user role and name to participate in the room.
+3. **Add User Stories**: Add user stories that need to be voted on.
+4. **Vote**: Cast your vote on the current user story.
+5. **Track Presence**: See which users are currently active in the room.
+6. **Kick User**: If you are a spectator, you can kick a user out of the room.
