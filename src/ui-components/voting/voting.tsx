@@ -25,8 +25,8 @@ const Voting: React.FC<VotingProps> = ({ currentUserStory, currentUser, voted, o
               onClick={voted ? onResetVote : onEndVote}
               sx={{
                 width: '100%',
-                border: '1px solid',   // Add border styling
-                borderColor: 'secondary.main', // Set border color to match button theme
+                border: '1px solid',   
+                borderColor: 'secondary.main', 
               }}
             >
               {voted ? 'Reset Vote' : 'End Vote'}
@@ -35,7 +35,7 @@ const Voting: React.FC<VotingProps> = ({ currentUserStory, currentUser, voted, o
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: { xs: 'column', sm: 'row' }, // Stack vertically on small screens, row on larger screens
+                flexDirection: { xs: 'column', sm: 'row' }, s
                 gap: 1,
                 flexWrap: 'wrap',
                 justifyContent: 'center',
@@ -46,10 +46,10 @@ const Voting: React.FC<VotingProps> = ({ currentUserStory, currentUser, voted, o
                   key={num}
                   onClick={() => onVote(num)}
                   sx={{ 
-                    flexBasis: { xs: '100%', sm: 'auto' }, // Full width on small screens, auto on larger screens
+                    flexBasis: { xs: '100%', sm: 'auto' }, 
                     maxWidth: 80,
-                    border: '1px solid',   // Add border styling
-                    borderColor: 'primary.main', // Set border color to match button theme
+                    border: '1px solid',  
+                    borderColor: 'primary.main', 
                   }}
                 >
                   {num}
