@@ -82,7 +82,7 @@ It allows users to join rooms, participate in voting on various user stories and
 
 1. **Create or Join a Room**: On the main page, you can create a new room or join an existing one by entering a room ID.
 2. **Select a User**: Choose your user role and name to participate in the room.
-3. **Add User Stories**: Add user stories that need to be voted on.
+3. **Add User Stories**:If you are a spectator, you can add user stories that need to be voted on.
 4. **Vote**: Cast your vote on the current user story.
 5. **Track Presence**: See which users are currently active in the room.
 6. **Kick User**: If you are a spectator, you can kick a user out of the room.
