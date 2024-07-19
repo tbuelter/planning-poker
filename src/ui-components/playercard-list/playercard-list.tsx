@@ -31,11 +31,16 @@ const PlayerCardList: React.FC<PlayerCardListProps> = ({ users, showBackside, on
           <Grid
             item
             key={user.id}
-            xs={12} // Full width on extra small screens
-            sm={6}  // Half width on small screens
-            md={4}  // One-third width on medium screens
-            lg={3}  // One-fourth width on large screens
-            sx={{ display: 'flex', justifyContent: 'center' }}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              flex: {
+                xs: '0 1 100%', // Full width on extra small screens
+                sm: '0 1 calc(50% - 16px)', // Half width on small screens, accounting for spacing
+                md: '0 1 calc(33.33% - 16px)', // Third width on medium screens, accounting for spacing
+                lg: '0 1 calc(25% - 16px)', // Quarter width on large screens, accounting for spacing
+              },
+            }}
           >
             <PlayerCard
               user={user}
@@ -48,7 +53,7 @@ const PlayerCardList: React.FC<PlayerCardListProps> = ({ users, showBackside, on
         ))}
       </Grid>
       {spectatorNames && (
-        <Typography sx={{ marginTop: 4, textAlign: 'center' }}>Spectators: {spectatorNames}</Typography>
+        <Typography sx={{ marginTop: 2, textAlign: 'center' }}>Spectators: {spectatorNames}</Typography>
       )}
     </Box>
   );
