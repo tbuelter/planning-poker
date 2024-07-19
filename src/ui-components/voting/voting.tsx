@@ -35,7 +35,7 @@ const Voting: React.FC<VotingProps> = ({ currentUserStory, currentUser, voted, o
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: { xs: 'column', sm: 'row' }, s
+                flexDirection: { xs: 'column', sm: 'row' },
                 gap: 1,
                 flexWrap: 'wrap',
                 justifyContent: 'center',
