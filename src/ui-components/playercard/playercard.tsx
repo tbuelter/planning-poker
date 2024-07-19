@@ -41,10 +41,6 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ user, rank, suit, showBackside,
      return (user.currentVote || user.currentVote === 0) ? '5px solid #4caf50' : '5px solid #ff2c2c'  
   }
 
-  const handleRemoveUser = (user: User) => {
-    onRemoveUser(user)
-  }
-
   return (
     <Card sx={{
       width: 200 / 1.3,

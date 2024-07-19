@@ -42,7 +42,7 @@ const Room: React.FC = () => {
         }
       }
   }
-  }, [currentUser, dispatch]);
+  }, [roomId, currentUser, dispatch]);
 
   // Handle new user creation from the Login Modal
   const handleUserSelect = (user: User) => {
@@ -98,7 +98,7 @@ const Room: React.FC = () => {
     if (!room) {
       loadRoom();
     }
-  }, [roomId, room]);
+  }, [roomId, room, dispatch]);
 
   const handleAddStory = (story: UserStory) => {
     dispatch(addUniqueUserStory(story));
