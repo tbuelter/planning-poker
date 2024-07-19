@@ -1,4 +1,4 @@
-import { Box, Typography, List, ListItem } from '@mui/material';
+import { Box, Typography, Grid } from '@mui/material';
 import { PlayerType, User } from '../../types';
 import PlayerCard from '../playercard/playercard';
 
@@ -16,23 +16,36 @@ const PlayerCardList: React.FC<PlayerCardListProps> = ({ users, showBackside, on
     .map(user => user.name)
     .join(', ');
 
-  return ( 
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <List sx={{ display: 'flex', flexDirection: 'row', padding: 0, overflowX: 'auto' }}>
-          {users.filter(user => user.role === PlayerType.Player).map((user) => (
-            <ListItem key={user.id} sx={{ display: 'inline-flex', justifyContent: 'center' }}>
-              <PlayerCard
-                user={user}
-                rank={user.currentVote}
-                suit="clubs"
-                showBackside={showBackside}
-                onRemoveUser={onRemoveUser}
-              />
-            </ListItem>
-          ))}
-        </List>
-      </Box>
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: {
+            xs: '1fr',       // 1 column on extra small screens
+            sm: 'repeat(2, 1fr)', // 2 columns on small screens
+            md: 'repeat(3, 1fr)', // 3 columns on medium screens
+            lg: 'repeat(4, 1fr)', // 4 columns on large screens
+          },
+          gap: 2,
+          width: '100%',
+          padding: 2,
+        }}
+      >
+        {users.filter(user => user.role === PlayerType.Player).map((user) => (
+          <Grid item key={user.id} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <PlayerCard
+              user={user}
+              rank={user.currentVote}
+              suit="clubs"
+              showBackside={showBackside}
+              onRemoveUser={onRemoveUser}
+            />
+          </Grid>
+        ))}
+      </Grid>
       {spectatorNames && (
         <Typography sx={{ marginTop: 2, textAlign: 'center' }}>Spectators: {spectatorNames}</Typography>
       )}

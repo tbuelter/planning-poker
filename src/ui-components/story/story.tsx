@@ -1,5 +1,20 @@
 import { useState } from 'react';
-import { Card, CardContent, Typography, CardActions, Button, Badge, Box, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Typography,
+  CardActions,
+  Button,
+  Badge,
+  Box,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
+} from '@mui/material';
 import { PlayerType, UserStory } from '../../types';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 
@@ -11,7 +26,13 @@ interface UserStoryProps {
   onVoteStory?: (storyId: string) => void;
 }
 
-const Story: React.FC<UserStoryProps> = ({ userStory, userRole, onRemoveStory, onSetEstimateStory, onVoteStory }) => {
+const Story: React.FC<UserStoryProps> = ({
+  userStory,
+  userRole,
+  onRemoveStory,
+  onSetEstimateStory,
+  onVoteStory,
+}) => {
   const [open, setOpen] = useState(false);
   const [estimate, setEstimate] = useState<number | null>(null);
 
@@ -48,8 +69,19 @@ const Story: React.FC<UserStoryProps> = ({ userStory, userRole, onRemoveStory, o
   };
 
   return (
-    <Container>
-      <Card sx={{ maxWidth: 345, minWidth: 345 }}>
+    <Container sx={{ padding: 2, display: 'flex', justifyContent: 'center' }}>
+      <Card
+        sx={{
+          width: '100%',
+          maxWidth: 345,
+          minWidth: 250,
+          margin: 'auto',
+          '@media (max-width: 600px)': {
+            maxWidth: '100%',
+            minWidth: '100%',
+          },
+        }}
+      >
         <CardContent>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Typography gutterBottom variant="h5" component="div">
