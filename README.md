@@ -92,3 +92,6 @@ It allows users to join rooms, participate in voting on various user stories and
 You can try out the app with the live demo:
 
 [Live Demo](https://planning-poker-chi-rouge.vercel.app/room/create)
+
+
+Not yet Optimized for Mobile view
