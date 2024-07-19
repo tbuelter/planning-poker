@@ -109,7 +109,6 @@ const Room: React.FC = () => {
       if (room.currentUserStoryId) {
         const story = room.userStories.find(story => story.id === room.currentUserStoryId);
         if (story) {
-          // Collect votes from active users
           const votes = room.users
             .filter(user => user.currentVote !== undefined)
             .map(user => user.currentVote as number); 
@@ -125,7 +124,7 @@ const Room: React.FC = () => {
   };
 
   useEffect(() => {
-      setAverageVote(calculateAverageVote())
+    setAverageVote(calculateAverageVote())
   }, [room?.users]);
 
 
