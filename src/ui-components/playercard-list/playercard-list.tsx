@@ -22,20 +22,21 @@ const PlayerCardList: React.FC<PlayerCardListProps> = ({ users, showBackside, on
         container
         spacing={2}
         sx={{
-          display: 'grid',
-          gridTemplateColumns: {
-            xs: '1fr',       // 1 column on extra small screens
-            sm: 'repeat(2, 1fr)', // 2 columns on small screens
-            md: 'repeat(3, 1fr)', // 3 columns on medium screens
-            lg: 'repeat(4, 1fr)', // 4 columns on large screens
-          },
-          gap: 2,
+          justifyContent: 'center',
           width: '100%',
           padding: 2,
         }}
       >
         {users.filter(user => user.role === PlayerType.Player).map((user) => (
-          <Grid item key={user.id} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Grid
+            item
+            key={user.id}
+            xs={12} // Full width on extra small screens
+            sm={6}  // Half width on small screens
+            md={4}  // One-third width on medium screens
+            lg={3}  // One-fourth width on large screens
+            sx={{ display: 'flex', justifyContent: 'center' }}
+          >
             <PlayerCard
               user={user}
               rank={user.currentVote}
@@ -47,7 +48,7 @@ const PlayerCardList: React.FC<PlayerCardListProps> = ({ users, showBackside, on
         ))}
       </Grid>
       {spectatorNames && (
-        <Typography sx={{ marginTop: 2, textAlign: 'center' }}>Spectators: {spectatorNames}</Typography>
+        <Typography sx={{ marginTop: 4, textAlign: 'center' }}>Spectators: {spectatorNames}</Typography>
       )}
     </Box>
   );
