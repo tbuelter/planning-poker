@@ -5,7 +5,7 @@ import {  RootState } from '../../store';
 import { addUniqueUserStory, updateRoomState, addOrUpdateUser, removeUserStoryById, setCurrentUserStory, updateVotedState, updateRoomStateAndFireStore, updateStory, removeUserById } from './roomSlice';
 import { setCurrentUser } from '../user/userSlice';
 import { UserStory, User } from '../../types';
-import { Box, Typography, IconButton, Drawer, Button, AppBar, Toolbar, CircularProgress } from '@mui/material';
+import { Box, Typography, IconButton, Drawer, Button, AppBar, Toolbar, CircularProgress, Grid } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { fetchRoomFromFirestore, subscribeToRoomFromFirestore } from '../../firestore-utils';
 import { trackUserPresence } from '../../realtimedatabase-utils';
@@ -201,42 +201,44 @@ const Room: React.FC = () => {
 
   return (
     <Box>
-    <AppBar position="static"> 
-      <Toolbar disableGutters>
-        {userSelectionOpen && (<UserSelection onUserSelect={handleUpdateUser}/>)}
-        {room.name && (<Typography sx={{ marginLeft: '16px' }}>Room Name: {room.name}</Typography>)}
-        <Box sx={{
-            position: 'absolute', right: 20,
-            mr: 2,
-            flexGrow: 1,
-            }}
-          >
-          <Button
-            onClick={() => setUserSelectionOpen(true)}
-            variant="contained"
-            color="secondary"
-            sx={{
-              fontFamily: 'monospace',
-              fontWeight: 500,
-              textDecoration: 'none',
-              margin: '16px'
-            }}
+     <AppBar position="static">
+      <Toolbar disableGutters sx={{ padding: '0 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        {userSelectionOpen && (<UserSelection onUserSelect={handleUpdateUser} />)}
+        {room.name && (
+          <Typography sx={{ marginRight: 'auto' }}>Room Name: {room.name}</Typography>
+        )}
+        <Grid container spacing={1} justifyContent="flex-end" alignItems="center">
+          <Grid item>
+            <Button
+              onClick={() => setUserSelectionOpen(true)}
+              variant="contained"
+              color="secondary"
+              sx={{
+                fontFamily: 'monospace',
+                fontWeight: 500,
+                textDecoration: 'none',
+                height: '40px', 
+              }}
             >
-            Settings
-          </Button>
-          <Button
-            onClick={toggleDrawer(true)}
-            variant="contained"
-            color="secondary"
-            sx={{
-              fontFamily: 'monospace',
-              fontWeight: 500,
-              textDecoration: 'none',
-            }}
-          >
-            Open User Stories
-          </Button>
-        </Box>
+              Settings
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              onClick={toggleDrawer(true)}
+              variant="contained"
+              color="secondary"
+              sx={{
+                fontFamily: 'monospace',
+                fontWeight: 500,
+                textDecoration: 'none',
+                height: '40px', 
+              }}
+            >
+              Open User Stories
+            </Button>
+          </Grid>
+        </Grid>
       </Toolbar>
     </AppBar>
     

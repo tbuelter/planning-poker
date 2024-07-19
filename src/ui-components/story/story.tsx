@@ -74,7 +74,7 @@ const Story: React.FC<UserStoryProps> = ({
         sx={{
           width: '100%',
           maxWidth: 345,
-          minWidth: 250,
+          minWidth: 320,
           margin: 'auto',
           '@media (max-width: 600px)': {
             maxWidth: '100%',
