@@ -1,6 +1,8 @@
 # Real-Time Collaborative Voting App
 
-Welcome to the Real-Time Collaborative Voting App! This project is designed as a learning tool for working with React, Firebase, and Redux. It allows users to join rooms, participate in voting on various user stories, and track their presence in real-time.
+Welcome to the Planning-Poker Voting App! 
+This project is designed as a learning project for working with React, Firebase, and Redux.
+It allows users to join rooms, participate in voting on various user stories and synchronize users in the same room in real time.
 
 ## Table of Contents
 
@@ -11,6 +13,7 @@ Welcome to the Real-Time Collaborative Voting App! This project is designed as a
   - [Installation](#installation)
   - [Running the App](#running-the-app)
 - [Usage](#usage)
+- [Demo](#demo)
 
 ## Features
 
@@ -83,3 +86,9 @@ Welcome to the Real-Time Collaborative Voting App! This project is designed as a
 4. **Vote**: Cast your vote on the current user story.
 5. **Track Presence**: See which users are currently active in the room.
 6. **Kick User**: If you are a spectator, you can kick a user out of the room.
+
+## Demo
+
+You can try out the app with the live demo:
+
+[Live Demo](https://planning-poker-chi-rouge.vercel.app/room/create)
