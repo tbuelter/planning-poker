@@ -51,18 +51,17 @@ Welcome to the Real-Time Collaborative Voting App! This project is designed as a
 
 3. Set up Firebase configuration:
 
-    Create a `firebaseConfig.js` file in the `src` directory with your Firebase project credentials:
+    Create a `.env` file in the root directory with your Firebase project credentials:
 
-    ```javascript
-    // src/firebaseConfig.js
-    export const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_STORAGE_BUCKET",
-      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
+    ```env
+    REACT_APP_FIREBASE_API_KEY=YOUR_API_KEY
+    REACT_APP_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
+    REACT_APP_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+    REACT_APP_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET
+    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=YOUR_MESSAGING_SENDER_ID
+    REACT_APP_FIREBASE_APP_ID=YOUR_APP_ID
+    REACT_APP_FIREBASE_MEASUREMENT_ID=YOUR_MEASUREMENT_ID
+    REACT_APP_FIREBASE_DATABASE_URL=YOUR_DATABASE_URL
     ```
 
 ### Running the App
