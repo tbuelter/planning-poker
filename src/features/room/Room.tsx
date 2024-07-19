@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {  RootState } from '../../store';
@@ -19,6 +19,7 @@ const Room: React.FC = () => {
   const { roomId } = useParams<{ roomId: string }>();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [userSelectionOpen, setUserSelectionOpen] = useState(false);
+  const [averageVote, setAverageVote] = useState<number>(0);
 
   const room = useSelector((state: RootState) => state.room.room);
   const currentUser = useSelector((state: RootState) => state.user.currentUser);
@@ -99,6 +100,11 @@ const Room: React.FC = () => {
       loadRoom();
     }
   }, [roomId, room, dispatch]);
+
+  useEffect(() => {
+    setAverageVote(calculateAverageVote())
+  }, [room?.users]);
+
 
   const handleAddStory = (story: UserStory) => {
     dispatch(addUniqueUserStory(story));
@@ -199,6 +205,24 @@ const Room: React.FC = () => {
       return room.userStories.find(story => story.id === room.currentUserStoryId)
   }
 
+  const calculateAverageVote = () => {
+    if (room.currentUserStoryId) {
+      const story = room.userStories.find(story => story.id === room.currentUserStoryId);
+      if (story) {
+        // Collect votes from active users
+        const votes = room.users
+          .filter(user => user.currentVote !== undefined)
+          .map(user => user.currentVote as number); 
+
+        if (votes.length > 0) {
+          const sum = votes.reduce((acc, vote) => acc + vote, 0);
+          return sum / votes.length;
+        }
+      }
+    }
+    return 0;
+  };
+  
   return (
     <Box>
      <AppBar position="static">
@@ -250,6 +274,11 @@ const Room: React.FC = () => {
       <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column',  paddingBottom: '264px' }}>
         <Typography>Players</Typography>
         <PlayerCardList users={room.users} showBackside={!room.voted} onRemoveUser={handleRemoveUser}/>
+        <Box sx={{ padding: '16px' }}>
+        {room.voted && 
+          <Typography variant="h6"> Average Vote: {averageVote.toFixed(1)}</Typography>  
+        }
+      </Box>
         <Voting 
           currentUserStory={room.userStories.find(story => story.id === room.currentUserStoryId)} 
           currentUser={currentUser} 
