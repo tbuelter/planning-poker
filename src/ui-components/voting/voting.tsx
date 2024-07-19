@@ -1,7 +1,6 @@
-// libs/ui-components/src/components/Voting.tsx
 import React from 'react';
-import { Box, Button, ButtonGroup, Typography } from '@mui/material';
-import { UserStory, User, PlayerType } from '../../types'
+import { Box, Button, Typography } from '@mui/material';
+import { UserStory, User, PlayerType } from '../../types';
 
 interface VotingProps {
   currentUserStory?: UserStory;
@@ -16,25 +15,53 @@ const Voting: React.FC<VotingProps> = ({ currentUserStory, currentUser, voted, o
   const fibonacci = [0, 0.5, 1, 2, 3, 5, 8, 13, 21];
 
   return (
-    <Box sx={{padding: 5}}>
+    <Box sx={{ padding: 5 }}>
       {currentUserStory ? (
-        <Box>          
+        <Box>
           {currentUser.role === PlayerType.Spectator ? (
-            ( voted ?
-            <Button variant="contained" color="secondary" onClick={onResetVote}>Reset Vote</Button>
-             : <Button variant="contained" color="secondary" onClick={onEndVote}>End Vote</Button> )
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={voted ? onResetVote : onEndVote}
+              sx={{
+                width: '100%',
+                border: '1px solid',   // Add border styling
+                borderColor: 'secondary.main', // Set border color to match button theme
+              }}
+            >
+              {voted ? 'Reset Vote' : 'End Vote'}
+            </Button>
           ) : (
-            <ButtonGroup>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: { xs: 'column', sm: 'row' }, // Stack vertically on small screens, row on larger screens
+                gap: 1,
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+              }}
+            >
               {fibonacci.map((num) => (
-                <Button key={num} onClick={() => onVote(num)}>
+                <Button
+                  key={num}
+                  onClick={() => onVote(num)}
+                  sx={{ 
+                    flexBasis: { xs: '100%', sm: 'auto' }, // Full width on small screens, auto on larger screens
+                    maxWidth: 80,
+                    border: '1px solid',   // Add border styling
+                    borderColor: 'primary.main', // Set border color to match button theme
+                  }}
+                >
                   {num}
                 </Button>
               ))}
-            </ButtonGroup>)
-          }    
+            </Box>
+          )}
         </Box>
       ) : (
-        <Typography variant="body1">No story selected for voting</Typography>
+        <Typography variant="body1" align="center">
+          No story selected for voting
+        </Typography>
       )}
     </Box>
   );
