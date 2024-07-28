@@ -110,7 +110,7 @@ const Room: React.FC = () => {
         const story = room.userStories.find(story => story.id === room.currentUserStoryId);
         if (story) {
           const votes = room.users
-            .filter(user => user.currentVote !== undefined)
+            .filter(user => user.currentVote !== null)
             .map(user => user.currentVote as number); 
 
           if (votes.length > 0) {
@@ -228,9 +228,9 @@ const Room: React.FC = () => {
   
   return (
     <Box>
+      {userSelectionOpen && (<UserSelection onUserSelect={handleUpdateUser} />)}
      <AppBar position="static">
-      <Toolbar disableGutters sx={{ padding: '0 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        {userSelectionOpen && (<UserSelection onUserSelect={handleUpdateUser} />)}
+      <Toolbar disableGutters sx={{ padding: '0 16px', display: 'flex', justifyContent: 'space-between' }}>
         {room.name && (
           <Typography sx={{ marginRight: 'auto' }}>Room Name: {room.name}</Typography>
         )}
@@ -262,7 +262,7 @@ const Room: React.FC = () => {
                 height: '40px', 
               }}
             >
-              Open User Stories
+              Stories
             </Button>
           </Grid>
         </Grid>
@@ -270,6 +270,7 @@ const Room: React.FC = () => {
     </AppBar>
     
     <Box sx={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 64px)', paddingTop: '64px', alignItems: 'center' }}>
+
       <Box sx={{ flexGrow: 0, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Story userStory={findCurrentUserStory()} userRole={currentUser.role} onRemoveStory={handleRemoveStory} onSetEstimateStory={handleSetEstimate} />
       </Box>
@@ -278,7 +279,7 @@ const Room: React.FC = () => {
         <Typography>Players</Typography>
         <PlayerCardList users={room.users} showBackside={!room.voted} onRemoveUser={handleRemoveUser}/>
         <Box sx={{ padding: '16px' }}>
-        {room.voted && 
+        { room.voted && !isNaN(averageVote) && 
           <Typography variant="h6"> Average Vote: {averageVote.toFixed(1)}</Typography>  
         }
       </Box>
@@ -316,7 +317,9 @@ const Room: React.FC = () => {
           />
         </Box>
       </Drawer>
+
     </Box>
+    
   </Box>
   );
 };
