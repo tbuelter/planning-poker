@@ -22,7 +22,7 @@ const PlayerCardList: React.FC<PlayerCardListProps> = ({ users, showBackside, on
       <Box sx={{ width: '100%' }}>
         <Grid
           container
-          spacing={4} // Adjust spacing to provide more space between cards
+          spacing={4} 
           justifyContent="center"
         >
           {users.filter(user => user.role === PlayerType.Player).map(user => (
