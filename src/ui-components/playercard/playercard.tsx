@@ -43,8 +43,8 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ user, rank, suit, showBackside,
 
   return (
     <Card sx={{
-      width: 200 / 1.3,
       height: 300 / 1.3,
+      width: 200/1.3,
       borderRadius: 4,
       border: '1px solid #ccc',
       background: '#f0f0f1',
@@ -54,7 +54,6 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ user, rank, suit, showBackside,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
-      minWidth: 200/1.3
     }}>
       {currentUser?.role === PlayerType.Spectator && (
         <Box sx={{ position: 'absolute', top: 8, right: 8, zIndex: '2' }}>

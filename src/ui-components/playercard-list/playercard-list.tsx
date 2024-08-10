@@ -22,11 +22,19 @@ const PlayerCardList: React.FC<PlayerCardListProps> = ({ users, showBackside, on
       <Box sx={{ width: '100%' }}>
         <Grid
           container
-          spacing={2}
+          spacing={4} // Adjust spacing to provide more space between cards
           justifyContent="center"
         >
           {users.filter(user => user.role === PlayerType.Player).map(user => (
-            <Grid item key={user.id} xs={12} sm={4} md={4} lg={4} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Grid
+              item
+              key={user.id}
+              xs={12}
+              sm={6}
+              md={4}
+              lg={4}
+              sx={{ display: 'flex', justifyContent: 'center' }}
+            >
               <PlayerCard
                 user={user}
                 rank={user.currentVote}
