@@ -53,7 +53,8 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ user, rank, suit, showBackside,
       boxShadow: 3,
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      minWidth: 200/1.3
     }}>
       {currentUser?.role === PlayerType.Spectator && (
         <Box sx={{ position: 'absolute', top: 8, right: 8, zIndex: '2' }}>
